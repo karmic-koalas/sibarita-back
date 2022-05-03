@@ -1,0 +1,34 @@
+type Tcompany = {
+
+    name : string
+    nickname : string
+    description : string
+    contact : Tcontact  
+    tables : Ttable[]
+
+}
+
+type Tcontact = {
+
+    companyName : string
+    phone : number
+    email? : string
+    instagram? : string
+    facebook? : string
+
+}
+
+type Tbooking = {
+
+    token : string
+    tables : Ttable
+    date : string
+    
+}
+
+type Ttable = {
+
+    bussy : boolean
+    size : number
+
+}
