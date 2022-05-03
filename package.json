@@ -1,0 +1,25 @@
+{
+  "name": "sibarita-back",
+  "version": "0.0.1",
+  "description": "Sibarita Backend Restful API",
+  "main": "server.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karmic-koalas/sibarita-back.git"
+  },
+  "author": "karmic-koalas",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/karmic-koalas/sibarita-back/issues"
+  },
+  "homepage": "https://github.com/karmic-koalas/sibarita-back#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.2"
+  }
+}
