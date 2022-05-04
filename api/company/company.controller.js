@@ -5,3 +5,9 @@ export function getAllCompanies(req, res) {
     return res.json(response);
   });
 }
+
+export function getCompany(req, res) {
+  return companies.findOne({ owner: req.params.owner }).then((response) => {
+    return res.json(response);
+  });
+}

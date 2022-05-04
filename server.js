@@ -13,6 +13,7 @@ mongoose
   )
   .catch((err) => console.log("Bad Mongo Connection:" + err));
 
+// IMPORTANT: Using ES6 you must use .js extension to import.
 import companyRouter from "./api/company/index.js";
 // import tableRouter from "./api/table/index.js";
 // import { router as bookingRouter } from "./api/booking/index.js";
