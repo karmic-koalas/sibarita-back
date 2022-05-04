@@ -1,25 +1,15 @@
-import { Schema } from 'mongoose'
+import mongoose from 'mongoose';
+const {Schema} = mongoose;
 
-const bookingSchema = Schema({
-    
-    name : string, //nombre de usuario unico e irremplazable -> l0lo_LPA_98
-    nickname : string, //nombre para mostrar a los usuarios -> Lolo Restaurant Las Palmas
-    description : string,
-    contact : {
-        companyName : string,
-        phone : number,
-        email : string
-    },
-    tables :  [{
-        id: string,
-        owner: string,
-        size : number 
-    }]
-
-    
+const bookingSchema = Schema({ 
+  client: String,
+  owner: String,
+  bookingToken: String,
+  bookingDate: String,
+  tablesInBooking: [String]
 })
 
 const booking = mongoose.model('bookings', bookingSchema);
 
-module.exports = booking;
+export default booking;
 

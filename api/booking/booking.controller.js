@@ -1,11 +1,7 @@
-import controller from '../company/company.controller';
-const bookingModel = require('./booking.model');
-const { response } = require('express');
-module.exports.getAllBookings = getAllBookings;
-module.exports.getAllBookingsByToken = getAllBookingsByToken;
+import bookingModel from './booking.model.js'
+import express from "express";
 
-
-function getAllBookings(req, res) {
+export function getAllBookings(req, res) {
     return bookingModel.find().then(
         (response) => {
             return res.json(response)
@@ -13,9 +9,8 @@ function getAllBookings(req, res) {
     )
 }
 
-
 // Get all bookings from one company!!!
-function getAllBookingsByToken(token) {
+export function getAllBookingsByToken(token) {
     return bookingModel.findById(token).then(
         (response) => {
             if (response === null) {

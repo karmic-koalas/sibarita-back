@@ -1,11 +1,8 @@
-const router = require('express').Router();
-const controller = require('./booking.controller');
+import express from "express";
+const router = express.Router()
+import { getAllBookings, getAllBookingsByToken} from "./booking.controller.js";
 
-
-router.get('/', controller.getAllBookings);
-router.get('/:id', controller.getAllBookingsByToken);
+router.get('/', getAllBookings);
+router.get('/:id', getAllBookingsByToken);
 
 export default router;
-
-
-module.exports = router;

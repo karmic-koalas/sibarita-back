@@ -1,6 +1,6 @@
 type Tcompany = {
 
-    name : string //nombre de usuario unico e irremplazable -> l0lo_LPA_98
+    owner : string //nombre de usuario unico e irremplazable -> l0lo_LPA_98
     nickname : string //nombre para mostrar a los usuarios -> Lolo Restaurant Las Palmas
     description : string
     contact : Tcontact  
@@ -21,15 +21,12 @@ type Tcontact = {
 type Tbooking = {
 
     token : string
-    tables : Ttable
-    date : string
-    
+    tables : Ttable[]
+    date : string  
 }
 
 type Ttable = {
-
-    name: string;
-    bussy : boolean
+    id : string
+    owner: string;
     size : number
-
 }
