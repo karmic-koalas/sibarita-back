@@ -3,7 +3,10 @@
 ### GET method to all companies.
 input:
 > apihost.foo/api/companies
+
 output:
+
+
 ```
 {
     name : string 
@@ -18,9 +21,10 @@ output:
 
 ### GET method to find one company.
 input:
-input:
 > apihost.foo/api/companies/example
+
 output:
+
 ```
 {
     name : string 
