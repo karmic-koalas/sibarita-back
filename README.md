@@ -1,13 +1,15 @@
 # Sibarita API Docs
 
-### GET method to all companies.
+## /api/companies
+
+### GET all companies.
 input:
 > apihost.foo/api/companies
 
 output:
 
 
-```
+```json
 {
     name : string 
     nickname : string 
@@ -19,13 +21,13 @@ output:
 }[]
 ```
 
-### GET method to find one company.
+### GET find by company name.
 input:
 > apihost.foo/api/companies/example
 
 output:
 
-```
+```json
 {
     name : string 
     nickname : string 
@@ -36,18 +38,37 @@ output:
     }
 }
 ```
-<!--type Tbooking = {
 
-    token : string
-    tables : Ttable
-    date : string
-    
+## /api/bookings
+
+### GET all bookings
+input:
+> apihost.foo/api/bookings
+
+output:
+
+```json
+{
+client: string,
+owner: string,
+bookingToken: string,
+bookingDate: string,
+tablesInBooking: String[]
+}[]
+```
+
+### GET booking by bookingToken
+input:
+> apihost.foo/api/bookings/example-foo-bar
+
+output:
+
+```json
+{
+client: string,
+owner: string,
+bookingToken: string,
+bookingDate: string,
+tablesInBooking: String[]
 }
-
-type Ttable = {
-
-    name: string;
-    bussy : boolean
-    size : number
-
-}-->
+```
