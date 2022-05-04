@@ -1,22 +1,15 @@
-import { Schema } from 'mongoose'
-
-
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
 const companySchema = Schema({
-    
-    name : string, //nombre de usuario unico e irremplazable -> l0lo_LPA_98
-    nickname : string, //nombre para mostrar a los usuarios -> Lolo Restaurant Las Palmas
-    description : string,
-    contact : {
-        companyName : string,
-        phone : number,
-        email : string
-    },
-    tables :  [{
-        name: string,
-        bussy : boolean,
-        size : number 
-    }]
+  owner: String,
+  nickname: String,
+  description: String,
+  contact: {
+    phone: Number,
+    email: String,
+  },
+});
 
-    
-})
+const companies = mongoose.model("companies", companySchema);
+export default companies;

@@ -1,9 +1,11 @@
-const router = require('express').Router();
-import { functionañadir, functionañadir, functionañadir, functionañadir } from './company.controller';
+import express from "express";
+import { getAllCompanies } from "./company.controller.js";
 
-router.get('/', functionañadir);
-router.get('/:id', functionañadir);
-router.post('/', functionañadir);
-router.delete('/:id', functionañadir);
+const router = express.Router();
+
+router.get("/", getAllCompanies);
+// router.get('/:id', getCompany);
+// router.post('/', postCompany);
+// router.delete('/:id', deleteCompany);
 
 export default router;

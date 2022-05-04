@@ -1,14 +1,7 @@
-import controller from '../company/company.controller';
+import companies from "./company.model.js";
 
-export const functionañadir = functionañadir;
-export const functionañadir = functionañadir;
-export const functionañadir = functionañadir;
-export const functionañadir = functionañadir;
-
-export const getTweetsByUsername = getTweetsByUsername;
-
-
-var companytest = [{
- object : string
-}];
-
+export function getAllCompanies(req, res) {
+  return companies.find().then((response) => {
+    return res.json(response);
+  });
+}

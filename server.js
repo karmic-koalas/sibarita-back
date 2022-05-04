@@ -1,15 +1,28 @@
-import 'dotenv/config'
-import 'process';
-import 'express';
-import 'mongoose';
+import "dotenv/config";
+import process from "process";
+import express from "express";
+import mongoose from "mongoose";
+
+mongoose
+  .connect(
+    "mongodb+srv://" +
+      process.env.USERNAME_DB +
+      ":" +
+      process.env.PASSWORD_DB +
+      "@sibarita.v89gs.mongodb.net/sibarita?retryWrites=true&w=majority"
+  )
+  .catch((err) => console.log("Bad Mongo Connection:" + err));
+
+import companyRouter from "./api/company/index.js";
+// import tableRouter from "./api/table/index.js";
+// import { router as bookingRouter } from "./api/booking/index.js";
 
 const app = express();
-mongoose.connect('mongodb+srv://'+process.env.USERNAME_DB+':'+process.env.PASSWORD_DB+'@sibarita.v89gs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-
-import companyRouter from './api/company/'
-import tableRouter from './api/table/'
-import bookingRouter from './api/booking/'
 
 app.use(express.json());
+
+app.use("/api/companies", companyRouter);
+// app.use("/api/table", tableRouter);
+// app.use("/api/booking", bookingRouter);
 
 app.listen(3000);
