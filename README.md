@@ -6,19 +6,18 @@
 input:
 > apihost.foo/api/companies
 
-output:
-
+output[ARRAY]:
 
 ```json
 {
-    name : string 
-    nickname : string 
-    description : string
-    contact : {
-	phone : number
-   	email : string
+    "name ": "string" 
+    "nickname ": "string" 
+    "description ": "string"
+    "contact ": {
+	"phone ": "number"
+   	"email ": "string"
     }
-}[]
+}
 ```
 
 ### GET find by company name.
@@ -29,12 +28,12 @@ output:
 
 ```json
 {
-    name : string 
-    nickname : string 
-    description : string
-    contact : {
-	phone : number
-   	email : string
+    "name ": "string" 
+    "nickname ": "string" 
+    "description ": "string"
+    "contact ": {
+	"phone ": "number"
+   	"email ": "string"
     }
 }
 ```
@@ -45,16 +44,16 @@ output:
 input:
 > apihost.foo/api/bookings
 
-output:
+output[ARRAY]:
 
 ```json
 {
-client: string,
-owner: string,
-bookingToken: string,
-bookingDate: string,
-tablesInBooking: String[]
-}[]
+"client": "string",
+"owner": "string",
+"bookingToken": "string",
+"bookingDate": "string",
+"tablesInBooking": "String[]"
+}
 ```
 
 ### GET booking by bookingToken
@@ -65,10 +64,10 @@ output:
 
 ```json
 {
-client: string,
-owner: string,
-bookingToken: string,
-bookingDate: string,
-tablesInBooking: String[]
+    "client": "string",
+    "owner": "string",
+    "bookingToken": "string",
+    "bookingDate": "string",
+    "tablesInBooking": "String[]"
 }
 ```
