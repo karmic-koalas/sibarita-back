@@ -10,13 +10,13 @@ export function getAllBookings(req, res) {
 }
 
 // Get all bookings from one company!!!
-export function getAllBookingsByToken(token) {
-    return bookingModel.findById(token).then(
+export function getAllBookingsByToken(req, res) {
+    return bookingModel.findById({bookingToken : req.params.bookingToken}).then(
         (response) => {
             if (response === null) {
                 return []
             } else {
-                return response
+                return res.json(response)
             }
         }
     )
