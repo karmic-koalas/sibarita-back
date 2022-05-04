@@ -3,3 +3,5 @@ node_modules/
 node_modules/*
 .vscode/*
 .vscode/
+package-lock.json
+pnpm-lock.yaml
