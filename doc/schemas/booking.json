@@ -1,0 +1,7 @@
+{
+  "client": "string",
+  "owner": "string",
+  "bookingToken": "string",
+  "bookingDate": "string",
+  "tablesInBooking": "[String]"
+}

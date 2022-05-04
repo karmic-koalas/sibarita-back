@@ -1,0 +1,19 @@
+[
+  {
+    "owner": "Burguers_Lolo",
+    "nickname": "Hamburgueseria Lolo",
+    "description": "Las hamburguesas mas chingonas y sabrosas de Las Palmas de Gran Canaria",
+    "contact": {
+      "phone": "654789423"
+    }
+  },
+  {
+    "owner": "tomatina",
+    "nickname": "Ristorante Tomatina",
+    "description": "Pizza, Lasaña y mucho amor por la comida desde 1978.",
+    "contact": {
+      "phone": "662248852",
+      "email": "ristorantetomatina@gmail.com"
+    }
+  }
+]
