@@ -16,7 +16,7 @@ mongoose
 // IMPORTANT: Using ES6 you must use .js extension to import.
 import companyRouter from "./api/company/index.js";
 // import tableRouter from "./api/table/index.js";
-// import { router as bookingRouter } from "./api/booking/index.js";
+import bookingRouter from "./api/booking/index.js";
 
 const app = express();
 
@@ -24,6 +24,6 @@ app.use(express.json());
 
 app.use("/api/companies", companyRouter);
 // app.use("/api/table", tableRouter);
-// app.use("/api/booking", bookingRouter);
+app.use("/api/bookings", bookingRouter);
 
 app.listen(3000);
