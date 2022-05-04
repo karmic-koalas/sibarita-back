@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const tablesSchema = Schema({
   owner: String,
-  size: Int,
+  size: Number,
 });
 
 const tables = mongoose.model("tables", tablesSchema);
