@@ -1,15 +1,17 @@
-import mongoose from 'mongoose';
-const {Schema} = mongoose;
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
-const bookingSchema = Schema({ 
+const bookingSchema = Schema({
   client: String,
   owner: String,
   bookingToken: String,
-  bookingDate: String,
-  tablesInBooking: [String]
-})
+  bookingDate: {
+    day: String,
+    hour: String,
+  },
+  tablesInBooking: [String],
+});
 
-const booking = mongoose.model('bookings', bookingSchema);
+const booking = mongoose.model("bookings", bookingSchema);
 
 export default booking;
-
