@@ -22,8 +22,8 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/api/companies", companyRouter);
-// app.use("/api/table", tableRouter);
-app.use("/api/bookings", bookingRouter);
+app.use("/companies", companyRouter);
+// app.use("/table", tableRouter);
+app.use("/bookings", bookingRouter);
 
 app.listen(3000);

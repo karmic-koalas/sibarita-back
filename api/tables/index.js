@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
-import { getAllTables, getAllTablesByOwner } from "./tables.controller.js";
+import { getAllTables, getAllTablesByOwnerAPI } from "./tables.controller.js";
 
 router.get("/", getAllTables);
-router.get("/:owner", getAllTablesByOwner);
+router.get("/:owner", getAllTablesByOwnerAPI);
 
 export default router;
