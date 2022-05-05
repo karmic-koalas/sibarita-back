@@ -1,0 +1,12 @@
+[
+  {
+    "client": "Camejo",
+    "owner": "Burguer_Lolo",
+    "bookingToken": "loco-pepe-roto",
+    "bookingDate": {
+      "day": "01122022",
+      "hour": "1000"
+    },
+    "tablesInBooking": "62726e36ce57e850ba8b65fe"
+  }
+]

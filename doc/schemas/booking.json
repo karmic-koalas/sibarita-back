@@ -2,6 +2,9 @@
   "client": "string",
   "owner": "string",
   "bookingToken": "string",
-  "bookingDate": "string",
+  "bookingDate": {
+    "day": "ddmmyyyy",
+    "hour": "hhmm"
+  },
   "tablesInBooking": "[String]"
 }
