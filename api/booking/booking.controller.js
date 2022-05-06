@@ -75,22 +75,22 @@ export function getBookingsByToken(req, res) {
     });
 }
 
-export function addNewBooking(req, res) {
+export function newBooking(req, res) {
   if (!req.body.client) {
     return res.status(400).send({ error: 400, msg: "No pusiste un client" });
   }
-
   if (!req.body.owner) {
     return res.status(400).send({ error: 400, msg: "No pusiste un owner" });
   }
-
   if (!req.body.bookingDate) {
     return res.status(400).send({ error: 400, msg: "No pusiste un date" });
   }
-
-  if (!req.body.tablesInBooking) {
-    return res.status(400).send({ error: 400, msg: "No pusiste las tables" });
+  if (!req.body.numPerson || req.body.numPerson < 1) {
+    return res.status(400).send({ error: 400, msg: "No pusiste un numPerson" });
   }
+  // if (!req.body.tablesInBooking) {
+  //   return res.status(400).send({ error: 400, msg: "No pusiste las tables" });
+  // }
 
   // getAvailableBookings(req.body.boddkingDate.day, hour, owner).then(
   //   (availablesTable) => {
@@ -104,14 +104,16 @@ export function addNewBooking(req, res) {
     bookingToken: humanId({
       separator: "-",
       capitalize: false,
-      adjectives: ["pedrocd", "juancesar0", "maximodm", "deviluppercase"],
-      nouns: ["erik", "pedrocamejo", "pedrort", "cesar"],
+      adjectives: [],
+      nouns: ["erik", "pedrocamejo", "pedrort", "cesar", "pedrocd", "juancesar0", "maximodm", "deviluppercase"],
       //verbs: [""] //unused atm
     }),
     bookingDate: req.body.bookingDate,
-    tablesInBooking: req.body.tablesInBooking,
+    //tablesInBooking: req.body.tablesInBooking,
+    numPerson: req.body.numPerson
   });
   newBooking.save();
+
   return res.json(newBooking);
 }
 
