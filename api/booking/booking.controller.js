@@ -32,18 +32,23 @@ function getAllBookingsByDate(day, hour) {
 }
 
 function getAvailableBookings(owner, day, hour) {
-  return getAllBookingsByDate(day, hour).then((allBookings) => {
-    return getAllTablesByOwner(owner).then((tablesOfOwner) => {
-      let availablesTable = [];
-      allBookings.forEach((booking) => {
-        booking.tablesInBooking.forEach((tableId) => {
-          availablesTable = tablesOfOwner.filter((table) => {
-            console.log(table._id, tableId);
-            return table._id.valueOf() != tableId;
-          });
+  return getAllTablesByOwner(owner).then((tablesOfOwner) => {
+    return getAllBookingsByDate(day, hour).then((bookingsInDate) => {
+      const allTablesIds = tablesOfOwner.map((table) => table._id.valueOf());
+      const bookedTablesIds = bookingsInDate
+        .map((booking) => {
+          return booking.tablesInBooking;
+        })
+        .flat(1);
+
+      return allTablesIds.filter((table) => {
+        if (bookedTablesIds.length < 1) {
+          return true;
+        }
+        return bookedTablesIds.some((booked) => {
+          return booked != table;
         });
       });
-      return availablesTable;
     });
   });
 }
