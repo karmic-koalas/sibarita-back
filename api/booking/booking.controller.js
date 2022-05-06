@@ -31,6 +31,23 @@ function getAllBookingsByDate(day, hour) {
   }
 }
 
+function getAvailableBookings(owner, day, hour) {
+  return getAllBookingsByDate(day, hour).then((allBookings) => {
+    return getAllTablesByOwner(owner).then((tablesOfOwner) => {
+      let availablesTable = [];
+      allBookings.forEach((booking) => {
+        booking.tablesInBooking.forEach((tableId) => {
+          availablesTable = tablesOfOwner.filter((table) => {
+            console.log(table._id, tableId);
+            return table._id.valueOf() != tableId;
+          });
+        });
+      });
+      return availablesTable;
+    });
+  });
+}
+
 /**
  * EXPRESS SECTION
  */
@@ -88,33 +105,15 @@ export function addNewBooking(req, res) {
     }),
     bookingDate: req.body.bookingDate,
     tablesInBooking: req.body.tablesInBooking,
-    //TO-DO uuid : make a function to call this 
   });
   newBooking.save();
   return res.json(newBooking);
 }
 
-function getAvailableBookings(day, hour, owner) { 
- let camejo = []
-  getAllBookingsByDate(day, hour).then((allBookings) => { 
-    getAllTablesByOwner(owner).then((tablesByOwner) => {
-      allBookings.forEach((booking) => {
-        booking.tablesInBooking.forEach((tableId) => {
-          tablesByOwner.forEach((table) => {
-            if (table.uuid =! tableId) {
-              camejo.push(table)
-
-            }
-           
-          })})
-      });
-     
-    });
-})
-return camejo
-}
-
-
-export function dummy (req, res) {
- return  getAvailableBookings("01122022", "1100", "Burguer_Lolo").then((response) => res.json(response))
+export function getAvailableBookingsAPI(req, res) {
+  return getAvailableBookings(
+    req.params.owner,
+    req.params.date,
+    req.params.hour
+  ).then((response) => res.json(response));
 }

@@ -9,7 +9,7 @@ mongoose
       process.env.USERNAME_DB +
       ":" +
       process.env.PASSWORD_DB +
-      "@sibarita.v89gs.mongodb.net/sibarita-dev?retryWrites=true&w=majority"
+      "@sibarita.v89gs.mongodb.net/sibarita?retryWrites=true&w=majority"
   )
   .catch((err) => console.log("Bad Mongo Connection:" + err));
 
