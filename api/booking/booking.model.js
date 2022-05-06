@@ -10,6 +10,7 @@ const bookingSchema = Schema({
     hour: String,
   },
   tablesInBooking: [String],
+  uuid : String
 });
 
 const booking = mongoose.model("bookings", bookingSchema);
