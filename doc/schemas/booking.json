@@ -6,5 +6,5 @@
     "day": "ddmmyyyy",
     "hour": "hhmm"
   },
-  "tablesInBooking": "[String]"
+  "numPerson": "[String]"
 }

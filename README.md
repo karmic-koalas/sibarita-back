@@ -1,73 +1,133 @@
 # Sibarita API Docs
 
-## /api/companies
+## /companies
 
 ### GET all companies.
 input:
-> apihost.foo/api/companies
+> apihost.foo/companies
 
 output[ARRAY]:
 
 ```json
 {
-    "name ": "string" 
-    "nickname ": "string" 
-    "description ": "string"
-    "contact ": {
-	"phone ": "number"
-   	"email ": "string"
+  "name": "string",
+  "nickname": "string",
+  "description": "string",
+  "image": "string",
+  "contact": {
+    "phone": "number",
+    "email": "string"
+  },
+  "address": {
+    "street": "string",
+    "number": "string",
+    "city": "string",
+    "province": "string",
+    "country": "string",
+    "cp": "string"
+  },
+  "schedule": {
+    "monday": {
+      "_0000": "boolean",
+      "-----": "-------",
+      "_2330": "boolean"
+    },
+    "tuesday": {
+      "_0000": "boolean",
+      "-----": "-------",
+      "_2330": "boolean"
     }
+  }
 }
 ```
 
 ### GET find by company name.
 input:
-> apihost.foo/api/companies/example
+> apihost.foo/companies/example
 
 output:
 
 ```json
 {
-    "name ": "string" 
-    "nickname ": "string" 
-    "description ": "string"
-    "contact ": {
-	"phone ": "number"
-   	"email ": "string"
+  "name": "string",
+  "nickname": "string",
+  "description": "string",
+  "image": "string",
+  "contact": {
+    "phone": "number",
+    "email": "string"
+  },
+  "address": {
+    "street": "string",
+    "number": "string",
+    "city": "string",
+    "province": "string",
+    "country": "string",
+    "cp": "string"
+  },
+  "schedule": {
+    "monday": {
+      "_0000": "boolean",
+      "-----": "-------",
+      "_2330": "boolean"
+    },
+    "tuesday": {
+      "_0000": "boolean",
+      "-----": "-------",
+      "_2330": "boolean"
     }
+  }
 }
 ```
 
-## /api/bookings
-
-### GET all bookings
-input:
-> apihost.foo/api/bookings
-
-output[ARRAY]:
-
-```json
-{
-"client": "string",
-"owner": "string",
-"bookingToken": "string",
-"bookingDate": "string",
-"tablesInBooking": "String[]"
-}
-```
+## /bookings
 
 ### GET booking by bookingToken
 input:
-> apihost.foo/api/bookings/example-foo-bar
+> apihost.foo/bookings/example-foo-bar
 
 output:
 
 ```json
 {
-    "client": "string",
-    "owner": "string",
-    "bookingToken": "string",
-    "bookingDate": "string",
-    "tablesInBooking": "String[]"
+  "client": "string",
+  "owner": "string",
+  "bookingToken": "string",
+  "bookingDate": {
+    "day": "ddmmyyyy",
+    "hour": "hhmm"
+  },
+  "numPerson": "[String]"
+}
+```
+
+### POST booking by bookingToken
+input:
+> apihost.foo/bookings/example-foo-bar
+
+```json
+{
+  "client": "string",
+  "owner": "string",
+  "bookingDate": {
+    "day": "ddmmyyyy",
+    "hour": "hhmm"
+  },
+  "numPerson": "[String]"
+}
+```
+
+output:
+
+```json
+{
+  "client": "string",
+  "owner": "string",
+  "bookingToken": "string",
+  "bookingDate": {
+    "day": "ddmmyyyy",
+    "hour": "hhmm"
+  },
+  "numPerson": "[String]"
 }
 ```
