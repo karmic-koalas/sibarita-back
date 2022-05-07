@@ -9,7 +9,9 @@ const bookingSchema = Schema({
     day: String,
     hour: String,
   },
-  tablesInBooking: [String],
+  //tablesInBooking: [String],
+  numPerson: Number,
+  //uuid: String,
 });
 
 const booking = mongoose.model("bookings", bookingSchema);
