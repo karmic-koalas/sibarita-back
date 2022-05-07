@@ -2,6 +2,7 @@ import "dotenv/config";
 import process from "process";
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 
 mongoose
   .connect(
@@ -20,6 +21,7 @@ import bookingRouter from "./api/booking/index.js";
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/companies", companyRouter);
 app.use("/bookings", bookingRouter);
