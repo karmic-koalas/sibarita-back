@@ -6,17 +6,16 @@ import humanId from "../human-id/human-id.js";
  */
 
 // Get all bookings from one company!!!
-export function getBookingsByToken(req, res) {
-  return bookingModel.findOne({ bookingToken: req.params.bookingToken }).then((response) => {
-    if (response === null) {
-      return [];
-    } else {
-      return res.json(response);
-    }
-  });
+export async function getBookingsByToken(req, res) {
+  const response = await bookingModel.findOne({ bookingToken: req.params.bookingToken });
+  if (response === null) {
+    return [];
+  } else {
+    return res.json(response);
+  }
 }
 
-export function newBooking(req, res) {
+export function newBooking (req, res) {
   if (!req.body.client) {
     return res.status(400).send({ error: 400, msg: "No pusiste un client" });
   }
@@ -55,3 +54,5 @@ export function newBooking(req, res) {
 
   return res.json(newBooking);
 }
+
+
