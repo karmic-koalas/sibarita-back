@@ -1,5 +1,5 @@
 import bookingModel from "./booking.model.js";
-import humanId from "../human-id/human-id.js";
+import humanId from "../../lib/human-id/human-id.js";
 
 /**
  * EXPRESS SECTION
