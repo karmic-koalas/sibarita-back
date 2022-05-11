@@ -6,14 +6,13 @@ import humanId from "../../lib/human-id/human-id.js";
  */
 
 // Get all bookings from one company!!!
-export function getBookingsByToken(req, res) {
-  return bookingModel.findOne({ bookingToken: req.params.bookingToken }).then((response) => {
-    if (response === null) {
-      return [];
-    } else {
-      return res.json(response);
-    }
-  });
+export async function getBookingsByToken(req, res) {
+  const response = await bookingModel.findOne({ bookingToken: req.params.bookingToken });
+  if (response === null) {
+    return [];
+  } else {
+    return res.json(response);
+  }
 }
 
 export function postBooking(req, res) {
@@ -44,3 +43,5 @@ export function postBooking(req, res) {
     .then((result) => res.json(result))
     .catch((error) => res.status(400).json(error));
 }
+
+
