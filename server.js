@@ -1,9 +1,14 @@
 import "dotenv/config";
+// ??
 import process from "process";
+// Para poder contestar a las llamadas del front.
 import express from "express";
+// Para llamar a la base de datos de MongoDB.
 import mongoose from "mongoose";
+// Para el fallo de CORS
 import cors from "cors";
 
+// Conexión a base de datos con login.
 mongoose
   .connect(
     "mongodb+srv://" +
@@ -23,7 +28,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Dirección de cada enrutamiento y a donde te lleva.
 app.use("/companies", companyRouter);
 app.use("/bookings", bookingRouter);
 
+// Puerto al que conectas el servidor.
 app.listen(3000);
