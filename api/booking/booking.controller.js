@@ -64,6 +64,7 @@ export async function postBooking(req, res) {
     .catch((error) => res.status(400).json(error));
 }
 
+
 export async function getBookingsByOwner(req, res) {
   const response = await bookingModel.findOne({ owner: req.params.owner });
   if (response === null) {
@@ -106,4 +107,5 @@ export async function findByIdAndUpdate(req, res) {
     return res.json(response);
   }
 }
+
 
