@@ -14,14 +14,14 @@ const clientValidate = (client) => {
 
 const phoneValidate = (phone) => {
   if (!phone || (phone.length > 8 && phone.length < 10) || typeof phone !== "number") return false;
-}
+};
 
 const emailValidate = (email) => {
-  const emailRegex = new RegExp("^[a-zA-Z0-9+_.-]+\@+[a-zA-Z0-9.-]+\.+[a-z]\{2,}$", "g");
+  const emailRegex = new RegExp("^[a-zA-Z0-9+_.-]+@+[a-zA-Z0-9.-]+.+[a-z]{2,}$", "g");
   if (emailRegex.test(email)) return true;
+  if (email === "") return true;
   return false;
-  
-}
+};
 
 const ownerValidate = (owner) => {
   if (!owner) return false;
@@ -37,7 +37,7 @@ const dayValidate = (day) => {
 
 const textAreaValidate = (textArea) => {
   if (textArea.length > 140) return false;
-}
+};
 ///////////////////////////////////////////////////
 
 const bookingSchema = Schema({
@@ -50,13 +50,13 @@ const bookingSchema = Schema({
     phone: {
       type: Number,
       required: true,
-      validate: [(phone) => phoneValidate(phone), "El campo phone es inválido o está vacío."]
+      validate: [(phone) => phoneValidate(phone), "El campo phone es inválido o está vacío."],
     },
     email: {
       type: String,
       required: false,
-      validate: [(email) => emailValidate(email), "El campo email es inválido."]
-    }
+      validate: [(email) => emailValidate(email), "El campo email es inválido."],
+    },
   },
   owner: {
     type: String,
@@ -83,7 +83,10 @@ const bookingSchema = Schema({
   textArea: {
     type: String,
     required: false,
-    validate: [(textArea) => textAreaValidate(textArea), "El textArea no puede superar los 140 caracteres."]
+    validate: [
+      (textArea) => textAreaValidate(textArea),
+      "El textArea no puede superar los 140 caracteres.",
+    ],
   },
   //tablesInBooking: [String],
   numPerson: {
