@@ -1,5 +1,9 @@
 {
   "client": "string",
+  "contact": {
+    "phone": "number",
+    "email": "string"
+  },
   "owner": "string",
   "bookingToken": "string",
   "bookingDate": {
