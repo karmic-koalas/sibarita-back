@@ -22,6 +22,7 @@ mongoose
 // IMPORTANT: Using ES6 you must use .js extension to import.
 import companyRouter from "./api/company/index.js";
 import bookingRouter from "./api/booking/index.js";
+import authRouter from "./api/auth/index.js";
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use(cors());
 // Dirección de cada enrutamiento y a donde te lleva.
 app.use("/companies", companyRouter);
 app.use("/bookings", bookingRouter);
+app.use("/auth", authRouter);
 
 // Puerto al que conectas el servidor.
 app.listen(3000);
