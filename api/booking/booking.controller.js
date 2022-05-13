@@ -1,14 +1,13 @@
 import bookingModel from "./booking.model.js";
 import humanId from "../../lib/human-id/human-id.js";
 
-function getByToken(token) {
-  return bookingModel.findOne({ bookingToken: token }).then((response) => {
-    if (response === null) {
-      return false;
-    } else {
-      return response;
-    }
-  });
+async function getByToken(token) {
+  const response = await bookingModel.findOne({ bookingToken: token });
+  if (response === null) {
+    return false;
+  } else {
+    return response;
+  }
 }
 
 async function uniqueToken(index = 0) {
@@ -23,6 +22,8 @@ async function uniqueToken(index = 0) {
       "cesar",
       "pedrocd",
       "juancesar0",
+      "erikeah",
+      "aschapira",
       "maximodm",
       "deviluppercase",
     ],
@@ -56,14 +57,13 @@ export async function postBooking(req, res) {
     bookingToken: resultToken,
     bookingDate: req.body.bookingDate,
     numPerson: req.body.numPerson,
-    textArea: req.body.textArea
+    textArea: req.body.textArea,
   });
   return newBooking
     .save()
     .then((result) => res.json(result))
     .catch((error) => res.status(400).json(error));
 }
-
 
 export async function getBookingsByOwner(req, res) {
   const response = await bookingModel.findOne({ owner: req.params.owner });
@@ -74,9 +74,8 @@ export async function getBookingsByOwner(req, res) {
   }
 }
 
-export async function deleteSingleBookingByID(req, res) {
-  const id = req.params._id.valueOf();
-  const response = await bookingModel.deleteOne({ _id: id });
+export async function getAllBookingsByOwner(req, res) {
+  const response = await bookingModel.find({ owner: req.params.owner });
   if (response === null) {
     return [];
   } else {
@@ -84,7 +83,18 @@ export async function deleteSingleBookingByID(req, res) {
   }
 }
 
-export async function findByIdAndUpdate(req, res) {
+export async function deleteSingleBookingByToken(req, res) {
+  const token = req.params.bookingToken;
+  //const id = req.params._id.valueOf();
+  const response = await bookingModel.deleteOne({ bookingToken: token });
+  if (response === null) {
+    return [];
+  } else {
+    return res.json(response);
+  }
+}
+
+export async function findByTokenAndUpdate(req, res) {
   let changes = {};
   if (req.body.client) changes.client = req.body.client;
   if (req.body.numPerson) changes.numPerson = req.body.numPerson;
@@ -97,8 +107,9 @@ export async function findByIdAndUpdate(req, res) {
     }
   }
 
-  const id = req.params._id.valueOf();
-  const response = await bookingModel.findByIdAndUpdate({ _id: id }, changes, {
+  //const id = req.params._id.valueOf();
+  const token = req.params.bookingToken;
+  const response = await bookingModel.findByTokenAndUpdate({ bookingToken: token }, changes, {
     returnDocument: "after",
   });
   if (response === null) {
@@ -107,5 +118,3 @@ export async function findByIdAndUpdate(req, res) {
     return res.json(response);
   }
 }
-
-

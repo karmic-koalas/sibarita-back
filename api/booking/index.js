@@ -1,14 +1,22 @@
 import express from "express";
 const router = express.Router();
 
-import { deleteSingleBookingByID, getBookingsByOwner, getBookingsByToken, postBooking, findByIdAndUpdate} from "./booking.controller.js";
+import {
+  deleteSingleBookingByToken,
+  getBookingsByOwner,
+  getBookingsByToken,
+  getAllBookingsByOwner,
+  postBooking,
+  findByTokenAndUpdate,
+} from "./booking.controller.js";
 import { checkIfOwnerExistMiddleware } from "./booking.middleware.js";
 
 router.get("/byToken/:bookingToken", getBookingsByToken);
 router.get("/byOwner/:owner", getBookingsByOwner);
+router.get("/allByOwner/:owner", getAllBookingsByOwner);
 // El orden de las funciones importa porque estamos metiendo un middleware
 router.post("/", checkIfOwnerExistMiddleware, postBooking);
-router.put("/byID/put/:_id", findByIdAndUpdate);
-router.delete("/byID/delete/:_id", deleteSingleBookingByID);
+router.put("/byToken/put/:bookingToken", findByTokenAndUpdate);
+router.delete("/byToken/delete/:bookingToken", deleteSingleBookingByToken);
 
 export default router;
