@@ -33,3 +33,8 @@ export function create(req, res) {
       return res.send(newUser);
     });
 }
+
+export function getDataUser(req, res) {
+  console.log(req.locals);
+  return true;
+}
