@@ -15,7 +15,7 @@ mongoose
       process.env.USERNAME_DB +
       ":" +
       process.env.PASSWORD_DB +
-      "@sibarita.v89gs.mongodb.net/sibarita?retryWrites=true&w=majority"
+      "@sibarita.v89gs.mongodb.net/sibarita-dev?retryWrites=true&w=majority"
   )
   .catch((err) => console.log("Bad Mongo Connection:\n" + err));
 
@@ -27,7 +27,12 @@ import authRouter from "./api/auth/index.js";
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:4200",
+    credentials: true,
+  })
+);
 
 // Dirección de cada enrutamiento y a donde te lleva.
 app.use("/companies", companyRouter);

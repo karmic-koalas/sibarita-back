@@ -14,7 +14,10 @@ export async function login(req, res) {
       }
 
       // Genera el token de autenticación
-      let token = jwt.sign({ email: userFound.email, role: "admin" }, "SECRET");
+      let token = jwt.sign(
+        { email: userFound.email, role: "admin", auth: true },
+        process.env.TOKEN_SECRET
+      );
       return res.json(token);
     })
     .catch((err) => {
@@ -34,7 +37,11 @@ export function create(req, res) {
     });
 }
 
-// export function getDataUser(req, res) {
-//   console.log(req.locals);
-//   return true;
-// }
+export function getDataUser(req, res) {
+  const user = req.locals.userInfo;
+
+  if (user.auth && user.role === "admin") {
+    return res.send(true);
+  }
+  return res.send(false);
+}
