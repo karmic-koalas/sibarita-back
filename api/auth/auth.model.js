@@ -8,6 +8,10 @@ const schema = new mongoose.Schema({
   password: {
     type: String,
   },
+  owner: {
+    type: String,
+    unique: true,
+  },
 });
 
 const authModel = new mongoose.model("users", schema);

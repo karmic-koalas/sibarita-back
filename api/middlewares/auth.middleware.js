@@ -23,6 +23,6 @@ export function isAdmin(req, res, next) {
   if (role === "admin") {
     next();
   } else {
-    return res.status(403).send("Only admins can delete tasks");
+    return res.status(403).send("Only admins can delete bookings");
   }
 }
