@@ -18,7 +18,11 @@ export async function login(req, res) {
         { email: userFound.email, role: "admin", auth: true, owner: userFound.owner },
         process.env.TOKEN_SECRET
       );
-      return res.json(token);
+      const tokenObject = {
+        token: token,
+        owner: userFound.owner,
+      };
+      return res.json(tokenObject);
     })
     .catch((err) => {
       return res.status(500).send(err);
