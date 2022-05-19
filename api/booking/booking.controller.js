@@ -115,12 +115,19 @@ export async function findByTokenAndUpdate(req, res) {
 
   //const id = req.params._id.valueOf();
   const token = req.params.bookingToken;
-  const response = await bookingModel.findByTokenAndUpdate({ bookingToken: token }, changes, {
-    returnDocument: "after",
-  });
-  if (response === null) {
-    return [];
+  const tokenToCheck = req.locals.userInfo;
+  const authOwner = tokenToCheck.owner;
+  const answer = await bookingModel.findOne({ bookingToken: token });
+  if (answer.owner === authOwner) {
+    const response = await bookingModel.findByTokenAndUpdate({ bookingToken: token }, changes, {
+      returnDocument: "after",
+    });
+    if (response === null) {
+      return [];
+    } else {
+      return res.json(response);
+    }
   } else {
-    return res.json(response);
+    return res.status(400).json({ message: "No eres el dueño" });
   }
 }
