@@ -5,10 +5,10 @@ export async function getAllCompanies(req, res) {
   return res.json(response);
 }
 
-
 export async function getCompany(req, res) {
   // Lo que hace el response es buscar LA PRIMERA propiedad owner que coincida con lo que llegue por el req.params.owner.
   const response = await companiesModel.findOne({ owner: req.params.owner });
+
   return res.json(response);
 }
 

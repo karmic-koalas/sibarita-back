@@ -15,10 +15,14 @@ export async function login(req, res) {
 
       // Genera el token de autenticación
       let token = jwt.sign(
-        { email: userFound.email, role: "admin", auth: true },
+        { email: userFound.email, role: "admin", auth: true, owner: userFound.owner },
         process.env.TOKEN_SECRET
       );
-      return res.json(token);
+      const tokenObject = {
+        token: token,
+        owner: userFound.owner,
+      };
+      return res.json(tokenObject);
     })
     .catch((err) => {
       return res.status(500).send(err);

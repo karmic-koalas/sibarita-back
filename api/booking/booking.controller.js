@@ -85,12 +85,18 @@ export async function getAllBookingsByOwner(req, res) {
 
 export async function deleteSingleBookingByToken(req, res) {
   const token = req.params.bookingToken;
-  //const id = req.params._id.valueOf();
-  const response = await bookingModel.deleteOne({ bookingToken: token });
-  if (response === null) {
-    return [];
+  const tokenToCheck = req.locals.userInfo;
+  const authOwner = tokenToCheck.owner;
+  const answer = await bookingModel.findOne({ bookingToken: token });
+  if (answer.owner === authOwner) {
+    const response = await bookingModel.deleteOne({ bookingToken: token });
+    if (response === null) {
+      return [];
+    } else {
+      return res.json(response);
+    }
   } else {
-    return res.json(response);
+    return res.status(400).json({ message: "No eres el dueño" });
   }
 }
 

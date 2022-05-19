@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 
 export function isAuth(req, res, next) {
   const token = req.headers.authorization;
-
   if (!token) {
     return res.send(false);
   } else {
@@ -23,6 +22,8 @@ export function isAdmin(req, res, next) {
   if (role === "admin") {
     next();
   } else {
-    return res.status(403).send("Only admins can delete tasks");
+    return res.status(403).send("Only admins can delete bookings");
   }
 }
+
+export default isAuth;
