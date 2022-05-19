@@ -119,7 +119,7 @@ export async function findByTokenAndUpdate(req, res) {
   const authOwner = tokenToCheck.owner;
   const answer = await bookingModel.findOne({ bookingToken: token });
   if (answer.owner === authOwner) {
-    const response = await bookingModel.findByTokenAndUpdate({ bookingToken: token }, changes, {
+    const response = await bookingModel.findOneAndUpdate({ bookingToken: token }, changes, {
       returnDocument: "after",
     });
     if (response === null) {
