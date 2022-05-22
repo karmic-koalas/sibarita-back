@@ -1,5 +1,13 @@
 import bookingModel from "./booking.model.js";
 import humanId from "../../lib/human-id/human-id.js";
+import nodemailer from "nodemailer";
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "sibaritaEnterprise@gmail.com",
+    pass: "Sibaritakoalas2022",
+  },
+});
 
 async function getByToken(token) {
   const response = await bookingModel.findOne({ bookingToken: token });
@@ -59,6 +67,7 @@ export async function postBooking(req, res) {
     numPerson: req.body.numPerson,
     textArea: req.body.textArea,
   });
+
   return newBooking
     .save()
     .then((result) => res.json(result))
@@ -90,6 +99,21 @@ export async function deleteSingleBookingByToken(req, res) {
   const answer = await bookingModel.findOne({ bookingToken: token });
   if (answer.owner === authOwner) {
     const response = await bookingModel.deleteOne({ bookingToken: token });
+    if (answer.contact.email != null) {
+      const email = answer.contact.email;
+      const mailOptions = {
+        from: "sibaritaEnterprise@gmail.com",
+        to: `${email}`,
+        subject: "Reserva en Sibarita Cancelada !!!",
+        text: `¡Hola! <br> Sentimos comunicarle que su reserva en ${answer.owner} para el día ${answer.bookingDate.day} ha sido cancelada por la Empresa`,
+      };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        }
+      });
+    }
+
     if (response === null) {
       return [];
     } else {
