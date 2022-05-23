@@ -16,5 +16,6 @@ COPY [  "package.json", "server.js", "/back/" ]
 WORKDIR /back
 RUN npm install
 
+EXPOSE 587
 EXPOSE 3000
 CMD [ "node", "server.js" ]
