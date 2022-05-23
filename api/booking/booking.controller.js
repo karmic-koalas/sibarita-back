@@ -1,11 +1,12 @@
 import bookingModel from "./booking.model.js";
 import humanId from "../../lib/human-id/human-id.js";
 import nodemailer from "nodemailer";
+
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: process.env.MAILSERVICE,
   auth: {
-    user: "sibaritaEnterprise@gmail.com",
-    pass: "Sibaritakoalas2022",
+    user: process.env.MAILACCOUNT,
+    pass: process.env.MAILPASS,
   },
 });
 
@@ -102,10 +103,13 @@ export async function deleteSingleBookingByToken(req, res) {
     if (answer.contact.email != null) {
       const email = answer.contact.email;
       const mailOptions = {
-        from: "sibaritaEnterprise@gmail.com",
+        from: process.env.MAILACCOUNT,
         to: `${email}`,
-        subject: "Reserva en Sibarita Cancelada !!!",
-        text: `¡Hola! <br> Sentimos comunicarle que su reserva en ${answer.owner} para el día ${answer.bookingDate.day} ha sido cancelada por la Empresa`,
+        subject: `Reserva en ${answer.owner} Cancelada ❌`,
+        text:
+          `¡Hola! \n\n` +
+          `Sentimos comunicarle que su reserva en ${answer.owner} para el día ${answer.bookingDate.day} con hora ${answer.bookingDate.hour} ha sido cancelada por el propietario.\n\n` +
+          `Esperamos volver a verte pronto.`,
       };
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
